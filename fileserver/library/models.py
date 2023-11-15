@@ -18,7 +18,7 @@ class Files(models.Model):
     file = models.FileField(help_text='file', blank=True, upload_to='files/')
     preview_image = models.FileField(help_text='file', blank=True, upload_to='images/')
     file_preview = models.CharField(max_length=255, help_text='url', blank=True)
-    file_type = models.CharField(max_length=2550000000, help_text='', blank=True)
+    file_type = models.CharField(max_length=2500, help_text='', blank=True)
     published = models.DateTimeField(auto_now_add=True, blank=True)
     price = models.FloatField(default=0.00)
 
