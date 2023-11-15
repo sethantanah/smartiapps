@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% block title %} Profile {% endblock %}
+{% block content%}
+
+
+<section class="bg-white dark:bg-gray-900">
+    <div class="flex justify-center min-h-screen">
+        <div class="flex  w-full max-w-3xl p-8 pt-1 mx-auto lg:px-12 lg:w-3/5">
+            <div class="w-full">
+                 <div class="mt-1">
+                    <h1 class="text-gray-500 dark:text-gray-300"></h1>
+                    <div class="mb-20 md:flex md:items-center justify-end md:-mx-2">
+                            <a href="{%url 'index'%}">
+                              <button class="flex justify-center w-full px-6 py-3  text-blue-500 border rounded-md  rounded-md md:w-auto md:mx-2 focus:outline-none  border-blue-600 ">
+
+
+                            <span class="mx-2">
+                               Back
+                            </span>
+                        </button>
+                     </a>
+
+                     <a href="{%url 'logout'%}">
+                            <button class="flex justify-center w-full px-6 py-3 mt-4 text-blue-500 border border-blue-600 rounded-md md:mt-0 md:w-auto md:mx-2 dark:border-blue-400 dark:text-blue-600 focus:outline-none">
+                            <span class="mx-2">
+                                Logout
+                            </span>
+                        </button>
+                     </a>
+
+
+                    </div>
+                </div>
+                <h1 class="text-2xl font-semibold tracking-wider text-gray-800 capitalize dark:text-white">
+                    User Profile
+                </h1>
+
+                <p class="mt-4 text-gray-500 dark:text-gray-400">
+
+                </p>
+
+
+
+                <form method="post" class="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2" id="form">
+                    {% csrf_token %}
+                    <div>
+                        <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200" for="{{form.first_name.id_for_label}}">First Name</label>
+                        <input type="text" id="{{form.first_name.id_for_label}}" name="{{form.first_name.name}}" value="{{form.first_name.value|default:''}}" placeholder="John" class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                    </div>
+
+
+
+                    <div>
+                        <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200" for="{{form.last_name.id_for_label}}">Last name</label>
+                        <input id="{{form.last_name.id_for_label}}" name="{{form.last_name.name}}" value="{{form.last_name.value|default:''}}" type="text" placeholder="Snow" class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                    </div>
+
+                    <div>
+                        <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200" for="{{form.phone.id_for_label}}">Phone number</label>
+                        <input type="text" id="{{form.phone.id_for_label}}" name="{{form.phone.name}}" value="{{form.phone.value|default:''}}" placeholder="XXX-XX-XXXX-XXX" class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                    </div>
+
+    <div>
+                        <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Email address</label>
+                        <input type="email" disabled placeholder="johnsnow@example.com" value="{{profile.user.email}}" class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                    </div>
+
+
+                    <button onclick="document.getElementById('form').submit()" id="submit"
+                        class="flex items-center justify-between w-full px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+                        <span>Update Profile</span>
+
+                          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                            </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    const last_name = document.getElementById('id_last_name')
+    const first_name = document.getElementById('id_first_name')
+    const submitBtn = document.getElementById('submit')
+
+    first_name.addEventListener('change',(ev)=>{
+    visible(first_name.value)
+    })
+
+    last_name.addEventListener('change',(ev)=>{
+    visible(last_name.value)
+    })
+
+
+  visible = function(val){
+    if(last_name.value.length < 1){
+      submitBtn.classList.add('hidden')
+    }else{
+    submitBtn.classList.remove('hidden')
+    }
+  }
+
+</script>
+{%endblock%}

@@ -1,0 +1,274 @@
+{% extends 'base.html' %}
+
+{% block title %} Smarti Consul {% endblock %}
+{% block content %}
+{% load filters %}
+
+<style>
+    /* Styles for screens with a width up to 768 pixels (typical tablets) */
+@media only screen and (max-width: 768px) {
+  .sub-container{
+    min-width: 100%;
+    max-width: 100%;
+  }
+
+  .book{
+    width: auto;
+    min-width: auto;
+  }
+}
+
+/* Styles for screens with a width up to 480 pixels (typical small screens like smartphones) */
+@media only screen and (max-width: 480px) {
+    .sub-container{
+    min-width: 100%;
+    max-width: 100%;
+  }
+
+  .book{
+    width: auto;
+    min-width: auto;
+  }
+}
+
+</style>
+
+<div class="container" style="min-width:100%;   display:flex; flex-direction:column; justify-content:center">
+    <div class="sub-container" style="margin-left:auto; margin-right:auto; max-width: 80%;">
+
+
+        {% include 'navigation.html'  with data='home'%}
+        {% if files %}
+
+        {% if shared %}
+        <div class="container  alert-box mt-5" id="alert-box" style="display:none">
+            <div class="flex bg-blue-100 rounded-lg p-4 mb-4 text-sm text-blue-700" role="alert">
+                <svg class="w-5 h-5 inline mr-3" fill="currentColor" viewBox="0 0 20 20"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                          d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                          clip-rule="evenodd"></path>
+                </svg>
+                <div>
+                    <span class="font-medium">Email Sent!</span> The file has been successfully sent to your email.
+                </div>
+            </div>
+        </div>
+
+        {%endif%}
+
+
+        {% if downloaded %}
+        <div class="container  alert-box2 mt-5" id="alert-box2" style="display:none">
+            <div class="flex bg-blue-100 rounded-lg p-4 mb-4 text-sm text-blue-700" role="alert">
+                <svg class="w-5 h-5 inline mr-3" fill="currentColor" viewBox="0 0 20 20"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                          d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                          clip-rule="evenodd"></path>
+                </svg>
+                <div>
+                    <span class="font-medium">Downloaded!</span> The file has been successfully downloaded.
+                </div>
+            </div>
+        </div>
+
+        {%endif%}
+
+
+        <div class="grid grid-flow-row gap-2 text-neutral-600 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3
+      items-center my-4">
+
+            {% for file in files %}
+
+            <div class="flex items-center justify-center p-8 book" style="min-width: 400px;">
+                <div class="bg-white rounded-xl overflow-hidden shadow-xl hover:scale-105 hover:shadow-2xl transform duration-500 cursor-pointer">
+                  <div class="p-4">
+                    <a href="{{ file.get_purchase_url }}" title="Purchase"
+                        style="text-align: center; padding: 5px;  width: 90px; height: 40px; display: flex;"
+                        class=" mr-1 transform  rounded   text-sm font-semibold bg-red-500 py-2 px-4 text-sm font-semibold text-white rounded-full cursor-pointer hover:scale-110"><span style="margin: auto;">
+                            <spna class="rounded-full">Buy</spna>
+                        </span>
+                    </a>
+                    
+                    <h1 class="mt-4 text-3xl font-bold hover:underline cursor-pointer">{{file.title}}</h1>
+                    <p class="mt-2 font-sans text-gray-700"></p>
+                  </div>
+                  <div class="relative">
+                    <img class="w-80" src="{{file.file_preview}}" />
+            
+                    <a href="{{ file.get_absolute_url }}" title="preview"
+            style="text-align: center; padding: 5px;  width: 90px; height: 40px; display: flex;"
+            class=" mr-1 transform  hover:scale-110  text-sm font-semibold absolute text-lg transform translate-x-20 -translate-y-24 bg-blue-600 text-white py-3 px-6 rounded-full cursor-pointer hover:scale-105 duration-500"><span style="margin: auto;">Study</span>
+                  </a>
+                  </div>
+                </div>
+              </div>
+
+
+  {% comment %}
+  
+  <div  class="flex items-center">
+    <div class="group relative mx-auto w-96 h-50 overflow-hidden rounded-[0px]  p-[1px] transition-all duration-300 ease-in-out hover:bg-gradient-to-r hover:from-indigo-500 hover:via-purple-500 hover:to-pink-500">
+        <div class="group-hover:animate-spin-slow invisible absolute -top-40 -bottom-40 left-10 right-10 bg-gradient-to-r from-transparent via-white/90 to-transparent group-hover:visible"></div>
+        <div class="relative rounded-[0px] bg-white p-6">
+            <a href="{{ file.get_absolute_url }}" class="space-y-4">
+                <div class="flex">
+                    <p class="text-lg font-semibold text-slate-800">{{file.title}}</p>
+                </div>
+                <p class="font-md text-slate-500"> {{file.description}} {% if file.description|length > 50 %}...{% endif %}</p>
+            </a>
+
+            <div style="display:flex; justify-content:end; gap:10px; margin-top:100px">
+<span style="margin:auto; margin-left:0; margin-right:auto; font-size:12px">
+1st Edition
+</span>
+
+<a href="{{ file.get_purchase_url }}" title="Purchase"
+style="text-align: center; padding: 5px; border-radius: 0px; width: 90px; height: 40px; display: flex;"
+class=" mr-1 transform  hover:scale-110 bg-gray-100  text-sm font-semibold"><span style="margin: auto;">Buy</span>
+</a>
+
+<a href="{{ file.get_absolute_url }}" title="preview"
+style="text-align: center; padding: 5px; border-radius: 0px; width: 90px; height: 40px; display: flex;"
+class=" mr-1 transform  hover:scale-110 bg-gray-100 text-sm font-semibold"><span style="margin: auto;">Study</span>
+</a>
+            
+
+<a href="{{ file.get_absolute_url }}" title="preview"
+class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
+
+<svg xmlns="http://www.w3.org/2000/svg" style="width:35px; height:35px"
+fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+<path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+<path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+</svg>
+</a>
+                <a href="{{ file.get_download_url }}" title="Download"
+                   class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" style="width:30px; height:30px"
+                         fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+                        <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                        <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+                    </svg>
+
+                </a>
+
+                <a title="Send by Mail" onclick="getPk('{{file.id}}')"
+                   class=" send-mail sendmail w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
+
+                    <svg xmlns="http://www.w3.org/2000/svg" style="width:30px; height:30px"
+                         fill="currentColor" class="bi bi-envelope-paper" viewBox="0 0 16 16">
+                        <path d="M4 0a2 2 0 0 0-2 2v1.133l-.941.502A2 2 0 0 0 0 5.4V14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V5.4a2 2 0 0 0-1.059-1.765L14 3.133V2a2 2 0 0 0-2-2H4Zm10 4.267.47.25A1 1 0 0 1 15 5.4v.817l-1 .6v-2.55Zm-1 3.15-3.75 2.25L8 8.917l-1.25.75L3 7.417V2a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v5.417Zm-11-.6-1-.6V5.4a1 1 0 0 1 .53-.882L2 4.267v2.55Zm13 .566v5.734l-4.778-2.867L15 7.383Zm-.035 6.88A1 1 0 0 1 14 15H2a1 1 0 0 1-.965-.738L8 10.083l6.965 4.18ZM1 13.116V7.383l4.778 2.867L1 13.117Z"/>
+                    </svg>
+
+                </a>
+             
+            </div>
+        </div>
+    </div>
+</div>
+  {% endcomment %}
+
+            {% endfor %}
+
+
+        </div>
+
+        {%else%}
+
+
+             <div class="grid grid-flow-row gap-2 text-neutral-600 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3
+      items-center my-4">
+
+            <div class="flex items-center">
+                <div class="group relative mx-auto w-96 h-50 overflow-hidden rounded-[0px]  p-[1px] transition-all duration-300 ease-in-out hover:bg-gradient-to-r hover:from-indigo-500 hover:via-purple-500 hover:to-pink-500">
+                    <div class="group-hover:animate-spin-slow invisible absolute -top-40 -bottom-40 left-10 right-10 bg-gradient-to-r from-transparent via-white/90 to-transparent group-hover:visible"></div>
+                    <div class="relative rounded-[0px] bg-white p-6">
+                        <h1>No files match searched query</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% endif %}
+
+
+
+        <div class="w-full relative bg-white py-2" style="top:auto">
+       <div class="px-2 flex items-center space-x-4 justify-center">
+                <span class="text-sm text-gray-500">{{ files.number }} of {{ files.paginator.num_pages }}</span>
+                <div class="flex items-center space-x-2">
+                     {% if files.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ files.previous_page_number }}">
+                  <button class="bg-gray-200 text-gray-400 p-1.5 rounded-lg" title="Newer">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+            </a>
+        {% endif %}
+
+                     {% if files.has_next %}
+            <a href="?page={{ files.next_page_number }}"> <button class="bg-gray-200 hover:bg-gray-300 text-gray-700 p-1.5 rounded-lg transition duration-150" title="Older">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                    </button></a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+
+
+                </div>
+            </div>
+</div>
+    </div>
+</div>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"
+        integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+
+
+{% include 'send_file_by_mail.html'%}
+
+
+
+<script>
+   getPk = function(pk){
+      window.localStorage.setItem("pk", pk)
+   }
+</script>
+
+<script>
+    tailwind.config = {
+    theme: {
+        extend: {
+            animation: {
+                'spin-slow': 'spin 5s linear infinite',
+            },
+        },
+    },
+    plugins: [],
+}
+
+
+ pid = $(".alert-box").show(500)
+    const timeoutId = setTimeout(()=>{
+    pid = $(".alert-box").hide(500)
+    }, 2000);
+
+
+
+
+
+
+
+
+
+</script>
+{% endblock %}

@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block title %} File Library {% endblock %}
+{% block content %}
+{% load filters %}
+
+<style>
+	.button:hover, .button:active{
+      border: 2px solid black !important;
+	  font-weight: bold;
+      cursor: pointer;
+	}
+</style>
+
+<div class="container" style="min-width:100%; display:flex; flex-direction:column; justify-content:center">
+    <div style="margin-left:auto; margin-right:auto ">
+
+
+        {% include 'navigation.html' with data='lib' %}
+        {% if files %}
+        <div class="grid grid-flow-row gap-2 text-neutral-600 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3
+      items-center my-4">
+
+            {% for file in files %}
+
+
+            <div  class="flex items-center">
+
+               <div>
+              
+                <div class="group relative mx-auto w-96 h-50 overflow-hidden rounded-[0px]  p-[1px] transition-all duration-300 ease-in-out hover:bg-gradient-to-r hover:from-indigo-500 hover:via-purple-500 hover:to-pink-500">
+                    <div class="group-hover:animate-spin-slow invisible absolute -top-40 -bottom-40 left-10 right-10 bg-gradient-to-r from-transparent via-white/90 to-transparent group-hover:visible"></div>
+                    <div class="relative rounded-[0px] bg-white p-0">
+                        <a href="{{ file.book.get_absolute_url }}" class="space-y-4">
+                            <img src="{{file.book.file_preview}}">
+                        </a>
+
+                        <div class="button" style="position: absolute; z-index: 99999999999999999999999999999999; left: 75%; top: 4%; border: 1px solid gray; padding: 10px;">
+                            <a href="{{ file.book.get_absolute_url }}" class="space-y-4">
+                             Study
+                            </a>
+                        </div>
+                    </div>
+                </div>
+               </div>
+
+
+            </div>
+            {% endfor %}
+
+
+        </div>
+
+        {%else%}
+
+
+             <div class="grid grid-flow-row gap-2 text-neutral-600 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3
+      items-center my-4">
+
+            <div class="flex items-center">
+                <div class="group relative mx-auto w-96 h-50 overflow-hidden rounded-[0px]  p-[1px] transition-all duration-300 ease-in-out hover:bg-gradient-to-r hover:from-indigo-500 hover:via-purple-500 hover:to-pink-500">
+                    <div class="group-hover:animate-spin-slow invisible absolute -top-40 -bottom-40 left-10 right-10 bg-gradient-to-r from-transparent via-white/90 to-transparent group-hover:visible"></div>
+                    <div class="relative rounded-[0px] bg-white p-6">
+                        <h1>No Purchased Books</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% endif %}
+
+    </div>
+</div>
+
+
+
+
+{% endblock %}
