@@ -6,11 +6,11 @@ from django.views.generic import RedirectView
 
 urlpatterns = [
                   path('admin/', admin.site.urls),
-                  path('accounts', include('accounts.urls')),
-                  path('library', include('library.urls')),
-                  path('dashboard', include('dashboard.urls')),
+                  path('accounts/', include('accounts.urls')),
+                  path('library/', include('library.urls')),
+                  path('dashboard/', include('dashboard.urls')),
                   path('payments/', include("payments.urls")),
-                  path('', RedirectView.as_view(url='/library'))
+                  path('', RedirectView.as_view(url='library/'))
               ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 
