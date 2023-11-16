@@ -12,13 +12,13 @@ from django.contrib.auth.views import (
 
 urlpatterns = [
     path('', sign_in, name='sign_in'),
-    path('/login/', sign_in, name='sign_in'),
-    path('/sign-up/', sign_up, name='sign_up'),
-    path('/logout/', LogoutView.as_view(next_page='sign_in'), name='logout'),
-    path('/confirm-email/', confirm_email, name='confirm_main'),
-    path('/activate/<uidb64>/<token>/',
+    path('login/', sign_in, name='sign_in'),
+    path('sign-up/', sign_up, name='sign_up'),
+    path('logout/', LogoutView.as_view(next_page='sign_in'), name='logout'),
+    path('confirm-email/', confirm_email, name='confirm_main'),
+    path('activate/<uidb64>/<token>/',
          activate, name='activate'),
-    path('/profile/', profile, name='profile')
+    path('profile/', profile, name='profile')
 ]
 
 urlpatterns += [
