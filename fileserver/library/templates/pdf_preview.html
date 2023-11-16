@@ -5,8 +5,11 @@
 </head> 
 <body oncontextmenu="return false"  style="width: 100%; height: 100%; position: absolute;">
 <div id="adobe-dc-view"></div>
-	url: "{{file_url}}"
 </body> 
+<script>
+	// Pass the value to your JavaScript file
+	const pdf_url = "{{file_url}}";
+</script>
 <script unsafe-hashes crossorigin="anonymous" src="https://acrobatservices.adobe.com/view-sdk/viewer.js"></script>
 <script src="{% static 'pdf_scripts.js' %}"></script>
 
