@@ -1,18 +1,26 @@
 <!DOCTYPE html> 
 <html> 
 <head> 
+<<<<<<< HEAD
 	{% load static%}
+=======
+>>>>>>> 62691fd3223e5715c767a3cc30588e52c52e098a
 </head> 
 <body oncontextmenu="return false"  style="width: 100%; height: 100%; position: absolute;">
 <div id="adobe-dc-view"></div>
 	url: "{{file_url}}"
 </body> 
+<<<<<<< HEAD
 
 
 <script unsafe-hashes crossorigin="anonymous" src="https://acrobatservices.adobe.com/view-sdk/viewer.js"></script>
 <script src="{% static 'pdf_scripts.js' %}"></script>
 
 <!-- <script unsafe-hashes crossorigin="anonymous" type="text/javascript">
+=======
+<script unsafe-hashes src="https://acrobatservices.adobe.com/view-sdk/viewer.js"></script>
+<script unsafe-hashes type="text/javascript">
+>>>>>>> 62691fd3223e5715c767a3cc30588e52c52e098a
 	document.addEventListener("adobe_dc_view_sdk.ready", function(){ 
 		var adobeDCView = new AdobeDC.View({clientId: "c2190c7ef509475e8d332b7ec0097cb0", divId: "adobe-dc-view"});
 		adobeDCView.previewFile({
@@ -20,5 +28,10 @@
 			metaData:{fileName: "Bodea Brochure.pdf"}
 		}, {showDownloadPDF: false, showPrintPDF: false});
 	});
+<<<<<<< HEAD
 </script> -->
 </html>
+=======
+</script>
+</html>
+>>>>>>> 62691fd3223e5715c767a3cc30588e52c52e098a
