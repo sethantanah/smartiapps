@@ -51,7 +51,7 @@ def sign_up(request):
             user.is_active = False
             user.set_password(form.clean_password())
             user.save()
-            UserWallet.objects.create(user=user)
+           #  UserWallet.objects.create(user=user)
             # to get the domain of the current site
             current_site = get_current_site(request)
             mail_subject = 'Activation link has been sent to your email id'
