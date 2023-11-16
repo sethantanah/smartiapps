@@ -115,12 +115,12 @@ def file_preview(request, pk):
 
             response = requests.get(file.file_url)
             content = response.content
-            # response = HttpResponse(content, content_type=content_type)
-            # response['Content-Disposition'] = f'inline; filename="{file.title}"'
+            response = HttpResponse(content, content_type=content_type)
+            response['Content-Disposition'] = f'inline; filename="{file.title}"'
             #print(file.file_url)
 
 
-            return render(request, 'pdf_preview.html', context={'file_url':file.file_url, 'pdf_content': content, 'title':file.title})
+            return render(request, 'pdf_preview.html', context={'file_url':file.file_url, 'pdf_content': response, 'title':file.title})
 
         else:
             return render(request, 'files-preview.html', {'file': file, 'type': file_type})
