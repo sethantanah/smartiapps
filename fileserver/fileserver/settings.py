@@ -86,6 +86,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'fileserver.urls'
@@ -222,3 +223,4 @@ PASSWORD_RESET_TIMEOUT = 1200
 
 PAYSTACK_SECRET_KEY = "sk_test_1b149df60d604d673b9d9c87220a889905c53004"
 PAYSTACK_PUBLIC_KEY = "pk_test_93afc450bfc11a6670e9aab961455c53b051cef0"
+
