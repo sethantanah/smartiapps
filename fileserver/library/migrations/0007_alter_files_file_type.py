@@ -13,6 +13,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='files',
             name='file_type',
-            field=models.CharField(blank=True, max_length=2550000000),
+            field=models.CharField(blank=True, max_length=2500),
         ),
     ]
