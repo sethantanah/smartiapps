@@ -4,13 +4,26 @@
 	{% load static%}
 </head> 
 <body oncontextmenu="return false"  style="width: 100%; height: 100%; position: absolute;">
+
 <div id="adobe-dc-view"></div>
 </body> 
 <script>
 	// Pass the value to your JavaScript file
 	const pdf_url = "{{file_url}}";
-	const arr_buffer = "{{pdf_content}}"
 	const title = "{{title}}"
+	const pdf_contents = "{{pdf_content}}"
+
+
+	// Assume you have a BytesIO-like object named 'bytesIO' with binary data
+
+// Convert the BytesIO-like object to a Blob
+const blob = new Blob([pdf_contents], { type: 'application/pdf' });
+
+// Create a FilePromise from the Blob
+const file = new File([blob], title +'.pdf', { type: 'application/pdf' });
+console.log(pdf_contents, file)
+// Now you can use 'filePromise' as needed
+
 </script>
 <script unsafe-hashes crossorigin="anonymous" src="https://acrobatservices.adobe.com/view-sdk/viewer.js"></script>
 <script unsafe-hashes crossorigin="anonymous" src="{% static 'pdf_scripts.js' %}"></script>
