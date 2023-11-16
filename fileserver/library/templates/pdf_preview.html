@@ -1,13 +1,12 @@
 <!DOCTYPE html> 
 <html> 
 <head> 
+	{% load static%}
 </head> 
 <body oncontextmenu="return false"  style="width: 100%; height: 100%; position: absolute;">
 <div id="adobe-dc-view"></div>
 	url: "{{file_url}}"
 </body> 
-
-
 <script unsafe-hashes crossorigin="anonymous" src="https://acrobatservices.adobe.com/view-sdk/viewer.js"></script>
 <script src="{% static 'pdf_scripts.js' %}"></script>
 
@@ -21,10 +20,5 @@
 			metaData:{fileName: "Bodea Brochure.pdf"}
 		}, {showDownloadPDF: false, showPrintPDF: false});
 	});
-<<<<<<< HEAD
 </script> -->
 </html>
-=======
-</script>
-</html>
->>>>>>> 62691fd3223e5715c767a3cc30588e52c52e098a
