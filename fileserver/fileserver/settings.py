@@ -28,40 +28,45 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
-ALLOWED_HOSTS = ["127.0.0.1",
-                  "17f6-154-160-21-175.ngrok-free.app", 
+ALLOWED_HOSTS = ['127.0.0.1',
+                 '127.0.0.1:5500',
+                  "5838-154-160-2-164.ngrok-free.app", 
                   'liz-fileserver-production.up.railway.app',
                   'lizz.onrender.com', 
                   'smarticonsul.onrender.com', 
                   'smarticonsul.com'
-                  'smarticonsul-com.onrender.com']
+                  'smarticonsul-com.onrender.com'
+                  ]
 
 INTERNAL_IPS = [
 "127.0.0.1",
     'lizz.onrender.com',
     'liz-fileserver-production.up.railway.app',
     'smarticonsul.onrender.com',
-    "17f6-154-160-21-175.ngrok-free.app",
+    "5838-154-160-2-164.ngrok-free.app",
     'smarticonsul.com',
-    'smarticonsul-com.onrender.com'
+    'smarticonsul-com.onrender.com',
+    '127.0.0.1:5500'
 ]
 
 CORS_ALLOWED_ORIGINS = [
     'https://lizz.onrender.com',
-    'https://17f6-154-160-21-175.ngrok-free.app',
+    'https://5838-154-160-2-164.ngrok-free.app',
     'https://liz-fileserver-production.up.railway.app',
     'https://smarticonsul.onrender.com',
     'https://smarticonsul.com',
-    'https://smarticonsul-com.onrender.com'
+    'https://smarticonsul-com.onrender.com',
+    'http://127.0.0.1:5500'
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     'https://lizz.onrender.com',
-    'https://17f6-154-160-21-175.ngrok-free.app',
+    'https://5838-154-160-2-164.ngrok-free.app',
     'https://liz-fileserver-production.up.railway.app',
     'https://smarticonsul.onrender.com',
     'https://smarticonsul.com',
-    'https://smarticonsul-com.onrender.com'
+    'https://smarticonsul-com.onrender.com',
+    'http://127.0.0.1:5500'
 ]
 
 TAILWIND_APP_NAME = 'theme'
@@ -234,6 +239,6 @@ PASSWORD_RESET_TIMEOUT = 1200
 
 # PayStack setup
 
-PAYSTACK_SECRET_KEY = "sk_test_1b149df60d604d673b9d9c87220a889905c53004"
-PAYSTACK_PUBLIC_KEY = "pk_test_93afc450bfc11a6670e9aab961455c53b051cef0"
+PAYSTACK_SECRET_KEY = os.environ.get('PAYSTACK_SECRET_KEY ')
+PAYSTACK_PUBLIC_KEY = os.environ.get('PAYSTACK_PUBLIC_KEY')
 
