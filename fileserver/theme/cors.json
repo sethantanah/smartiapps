@@ -1,0 +1,8 @@
+[
+    {
+      "origin": ["https://smarticonsul.onrender.com"],
+      "method": ["GET"],
+      "maxAgeSeconds": 3600
+    }
+  ]
+  

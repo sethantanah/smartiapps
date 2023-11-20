@@ -12,17 +12,21 @@
 	const pdf_url = "{{file_url}}";
 	const title = "{{title}}"
 	const pdf_contents = "{{pdf_content}}"
+	const response = "{{response}}"
 
 
 	// Assume you have a BytesIO-like object named 'bytesIO' with binary data
 
-// Convert the BytesIO-like object to a Blob
-const blob = new Blob([pdf_contents], { type: 'application/pdf' });
+	// Extract the content type and file data from the response
 
-// Create a FilePromise from the Blob
-const file = new File([blob], title +'.pdf', { type: 'application/pdf' });
-console.log(pdf_contents, file)
-// Now you can use 'filePromise' as needed
+// const fileData = await response.arrayBuffer(); 
+// // Convert the BytesIO-like object to a Blob
+// const blob = new Blob([fileData], { type: 'application/pdf' });
+
+// // Create a FilePromise from the Blob
+// const file = new File([blob], title +'.pdf', { type: 'application/pdf' });
+// console.log(fileData, file)
+// // Now you can use 'filePromise' as needed
 
 </script>
 <script unsafe-hashes crossorigin="anonymous" src="https://acrobatservices.adobe.com/view-sdk/viewer.js"></script>

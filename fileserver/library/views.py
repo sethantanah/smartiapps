@@ -113,16 +113,16 @@ def file_preview(request, pk):
 
         if file_type == 'pdf':
 
-            response = requests.get(file.file_url)
-            file_content = response.content
-            bytesIO = BytesIO(file_content)
-           # print(blob_data)
-            #response = HttpResponse(content, content_type=content_type)
-            #response['Content-Disposition'] = f'inline; filename="{file.title}"'
+        #     response = requests.get(file.file_url)
+        #     file_content = response.content
+        #     bytesIO = BytesIO(file_content)
+        #    # print(blob_data)
+        #     response = HttpResponse(file_content, content_type=content_type)
+        #     response['Content-Disposition'] = f'inline; filename="{file.title}"'
             #print(file.file_url)
 
 
-            return render(request, 'pdf_preview.html', context={'file_url':file.file_url, 'pdf_content': bytesIO, 'title':file.title})
+            return render(request, 'pdf_preview.html', context={'file_url':file.file_url,'response':'', 'pdf_content': '', 'title':file.title})
 
         else:
             return render(request, 'files-preview.html', {'file': file, 'type': file_type})
