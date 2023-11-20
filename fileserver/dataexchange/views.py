@@ -3,7 +3,7 @@
 import os
 
 # # views.py
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 from django.core.mail import send_mail
@@ -23,7 +23,7 @@ def email_list(request):
 
             if form.is_valid():
                 form.save()
-                return JsonResponse({'message': 'Email sent successfully'})
+                return JsonResponse({'message': 'Email sent successfully'}, status=200)
             else:
                 return JsonResponse({'message': 'Failed to send email'}, status=400)
 
@@ -54,7 +54,7 @@ def send_email(request):
             from_email='smarticonsul@gmail.com',
             to_emails='smarticonsul@gmail.com',
             subject=f'{m_subject}',
-            html_content=f'You have received a new message from your website contact form.\n\n"."Here are the details:\n\nName: {name}\n\n\nEmail: {email}\n\nSubject: {m_subject}\n\nMessage: {message}')
+            html_content= f'<div><h4>{name}</h4><p>{message}</p><emph>Email:{email}</emph></div>')
            
             
 
@@ -64,14 +64,11 @@ def send_email(request):
 
            # Check if the email was sent successfully
             if response.status_code == 202:
-                return JsonResponse({'message': 'Email sent successfully'})
+                return HttpResponse('Email sent successfully', status=200)
             else:
-                return JsonResponse({'message': 'Failed to send email'}, status=response.status_code)
+                return HttpResponse('Failed to send email', status=response.status_code)
 
         except Exception as e:
-            return JsonResponse({'message': f'Error: {str(e)}'}, status=500)
+            return HttpResponse(f'Error: {str(e)}', status=500)
 
-    return JsonResponse({'message': 'Invalid request method'}, status=400)
-
-
-
+    return HttpResponse('Invalid request method', status=400)

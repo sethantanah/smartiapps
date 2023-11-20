@@ -39,14 +39,14 @@ ALLOWED_HOSTS = ['127.0.0.1',
                   ]
 
 INTERNAL_IPS = [
-"127.0.0.1",
+    '127.0.0.1',
+    '127.0.0.1:5500',
     'lizz.onrender.com',
-    'liz-fileserver-production.up.railway.app',
+    '5838-154-160-2-164.ngrok-free.app',
     'smarticonsul.onrender.com',
-    "5838-154-160-2-164.ngrok-free.app",
     'smarticonsul.com',
-    'smarticonsul-com.onrender.com',
-    '127.0.0.1:5500'
+    'smarticonsul-com.onrender.com'
+   
 ]
 
 CORS_ALLOWED_ORIGINS = [
@@ -58,6 +58,16 @@ CORS_ALLOWED_ORIGINS = [
     'https://smarticonsul-com.onrender.com',
     'http://127.0.0.1:5500'
 ]
+
+CORS_ORIGIN_WHITELIST = (
+   'https://lizz.onrender.com',
+    'https://5838-154-160-2-164.ngrok-free.app',
+    'https://liz-fileserver-production.up.railway.app',
+    'https://smarticonsul.onrender.com',
+    'https://smarticonsul.com',
+    'https://smarticonsul-com.onrender.com',
+    'http://127.0.0.1:5500'
+)
 
 CSRF_TRUSTED_ORIGINS = [
     'https://lizz.onrender.com',
@@ -103,6 +113,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     
 ]
