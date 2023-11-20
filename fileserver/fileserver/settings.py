@@ -28,7 +28,13 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
-ALLOWED_HOSTS = ["127.0.0.1", "17f6-154-160-21-175.ngrok-free.app", 'liz-fileserver-production.up.railway.app', 'lizz.onrender.com', 'smarticonsul.onrender.com']
+ALLOWED_HOSTS = ["127.0.0.1",
+                  "17f6-154-160-21-175.ngrok-free.app", 
+                  'liz-fileserver-production.up.railway.app',
+                  'lizz.onrender.com', 
+                  'smarticonsul.onrender.com', 
+                  'smarticonsul.com'
+                  'smarticonsul-com.onrender.com']
 
 INTERNAL_IPS = [
 "127.0.0.1",
@@ -36,20 +42,26 @@ INTERNAL_IPS = [
     'liz-fileserver-production.up.railway.app',
     'smarticonsul.onrender.com',
     "17f6-154-160-21-175.ngrok-free.app",
+    'smarticonsul.com',
+    'smarticonsul-com.onrender.com'
 ]
 
 CORS_ALLOWED_ORIGINS = [
     'https://lizz.onrender.com',
     'https://17f6-154-160-21-175.ngrok-free.app',
     'https://liz-fileserver-production.up.railway.app',
-    'https://smarticonsul.onrender.com'
+    'https://smarticonsul.onrender.com',
+    'https://smarticonsul.com/',
+    'https://smarticonsul-com.onrender.com/'
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     'https://lizz.onrender.com',
     'https://17f6-154-160-21-175.ngrok-free.app',
     'https://liz-fileserver-production.up.railway.app',
-    'https://smarticonsul.onrender.com'
+    'https://smarticonsul.onrender.com',
+    'https://smarticonsul.com/',
+    'https://smarticonsul-com.onrender.com/'
 ]
 
 TAILWIND_APP_NAME = 'theme'
@@ -71,7 +83,8 @@ INSTALLED_APPS = [
     'accounts',
     'library',
     'dashboard',
-    'payments'
+    'payments',
+    'dataexchange'
 
 ]
 

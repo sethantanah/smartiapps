@@ -10,6 +10,7 @@ urlpatterns = [
                   path('library/', include('library.urls')),
                   path('dashboard/', include('dashboard.urls')),
                   path('payments/', include("payments.urls")),
+                  path('dataexchange/', include("dataexchange.urls")),
                   path('', RedirectView.as_view(url='library/'))
               ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
