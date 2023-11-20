@@ -51,8 +51,8 @@ CORS_ALLOWED_ORIGINS = [
     'https://17f6-154-160-21-175.ngrok-free.app',
     'https://liz-fileserver-production.up.railway.app',
     'https://smarticonsul.onrender.com',
-    'https://smarticonsul.com/',
-    'https://smarticonsul-com.onrender.com/'
+    'https://smarticonsul.com',
+    'https://smarticonsul-com.onrender.com'
 ]
 
 CSRF_TRUSTED_ORIGINS = [
@@ -60,8 +60,8 @@ CSRF_TRUSTED_ORIGINS = [
     'https://17f6-154-160-21-175.ngrok-free.app',
     'https://liz-fileserver-production.up.railway.app',
     'https://smarticonsul.onrender.com',
-    'https://smarticonsul.com/',
-    'https://smarticonsul-com.onrender.com/'
+    'https://smarticonsul.com',
+    'https://smarticonsul-com.onrender.com'
 ]
 
 TAILWIND_APP_NAME = 'theme'
